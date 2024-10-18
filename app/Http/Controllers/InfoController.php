@@ -14,7 +14,7 @@ class InfoController extends Controller
         ]);
     }
 
-    public function clientInfo(Request $request)
+        public function clientInfo(Request $request)
     {
         return response()->json([
             'ip' => $request->ip(),
@@ -31,4 +31,17 @@ class InfoController extends Controller
         ];
         return response()->json($dbInfo);
     }
+    public function serverInfo()
+    {
+    $dto = new InfoDTO(
+        phpversion(),
+        $_SERVER['SERVER_SOFTWARE'],
+        '',
+        '',
+        ''
+    );
+
+    return response()->json($dto->toArray());
+    }
+
 }
